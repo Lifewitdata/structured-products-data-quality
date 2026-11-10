@@ -1,0 +1,5 @@
+severity,rule_name,issues,open_issues,resolved_issues,avg_days_to_resolve,no_longer_failing,absent_from_snapshot
+HIGH,MISSING_PRODUCT_TYPE,4294,182,4112,1.01,3783,329
+LOW,UNVERIFIED_ISSUER,129237,103675,25562,10.82,0,25562
+LOW,NON_ISO_GEO_AREA,23347,19779,3568,10.37,0,3568
+LOW,STALE_LAST_TRADE,2229,1947,282,14.61,89,193

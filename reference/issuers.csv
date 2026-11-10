@@ -1,0 +1,32 @@
+issuer_code,issuer_name,verified
+VON,Vontobel,false
+UBS,UBS,false
+LEON,Leonteq Securities,false
+LEONGUE,Leonteq Securities (Guernsey),false
+ZKB,Zuercher Kantonalbank,false
+JB,Julius Baer,false
+BNPPI,BNP Paribas,false
+BNP,BNP Paribas,false
+BKB,Basler Kantonalbank,false
+SWSQU,Swissquote,false
+BCV,Banque Cantonale Vaudoise,false
+RBC,Royal Bank of Canada,false
+EFG,EFG International,false
+GSI,Goldman Sachs International,false
+JPM,J.P. Morgan,false
+CIBC,Canadian Imperial Bank of Commerce,false
+RAIFFNL,,false
+BKSVR,,false
+KBLU,,false
+SGEGG,,false
+SGISS,,false
+BILSA,,false
+CORGUE,,false
+CORNER,,false
+SWQTEU,,false
+SAR,,false
+NHB,,false
+HB,,false
+MORGFI,,false
+GSFCI,,false
+RBCTB,,false

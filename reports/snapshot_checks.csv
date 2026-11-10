@@ -1,0 +1,6 @@
+snapshot_date,check_id,check_name,severity,detail
+2026-10-20,S01,ROW_COUNT_SWING,MEDIUM,Row count changed +1.66% vs previous file
+2026-10-26,S02,MISSING_TYPE_SPIKE,HIGH,1590 products without type vs median 182
+2026-11-04,S01,ROW_COUNT_SWING,MEDIUM,Row count changed -2.23% vs previous file
+2026-11-09,S02,MISSING_TYPE_SPIKE,HIGH,2885 products without type vs median 182
+2026-11-10,S03,PRODUCTION_TIME_DEVIATION,MEDIUM,"File produced at 18:45, -300 min from usual time"

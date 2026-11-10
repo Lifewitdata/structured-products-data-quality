@@ -1,0 +1,46 @@
+SIX Structured Products Data Quality - Operating Procedure
+Version: 1.0
+Date: 2026-11-11
+Owner: Portfolio analyst
+Scope: Real SIX daily structured-products closing CSVs only.
+
+1. Source and permitted use
+Official source: https://www.six-structured-products.com/en/latest-news/closing-prices
+Review SIX terms before redistributing raw data. Free downloads do not establish an unrestricted redistribution licence. Raw files and database are ignored by Git. Never upload them to a public repository without checking applicable terms.
+
+2. Acquisition
+Run python -m srp_dq.download from the project environment. Links are discovered from the official page, not guessed. The available history is a rolling window, so future runs may cover different dates. Cache existing files to retain the original study period.
+New payloads are schema/date validated, then written atomically. acquisition_manifest.json records URL, byte count, SHA-256 and validation time. Acquisition timestamps remain null for files cached before provenance tracking was added; do not invent historic timestamps. No authentication bypass or paid SRP data is used.
+
+3. Acceptance and loading
+Run python -m srp_dq.pipeline. Preserve source fields; trim whitespace and convert YYYYMMDD date strings and numeric fields. Repeated headers and the production footer are metadata, not products. Reject malformed/unparseable snapshots, absent footers, date disagreement, empty snapshots and duplicate/null ISIN keys before building history.
+A correctly formed but unusually small file may still be incomplete at source. Row-count checks are review triggers, not confirmation. Investigate material swings before relying on membership changes.
+
+4. Quality review
+CRITICAL: identifier format/check digit or duplicate keys. Reject ambiguous snapshots; confirm identifiers against final terms before correction.
+HIGH: missing product type, invalid currency, inconsistent dates or price ranges. Investigate and retain evidence; no silent backfill.
+MEDIUM: unmapped type/issuer, zero price, inconsistent trade/volume counts. Review source context before deciding validity.
+LOW: provisional issuer-name mapping, numeric region code, old last-trade date. These are local enrichment/information flags, not necessarily source errors. Every issuer-name mapping is unverified until a dated source is supplied. EUSIPA mappings are provisional portfolio mappings, not authoritative classification assignments.
+Record source evidence, reviewer, decision and action in a separate human review record when performing actual corrections. This release detects and monitors changes; it does not include a fabricated human approval history.
+
+5. Audit and product history
+Reference fields are compared between adjacent available snapshots. Prices are kept in daily_market, not conflated with reference corrections. INITIAL_LOAD is baseline membership, NEW_LISTING is first observed, REMOVED is absent next day, RELISTED is observed after absence. None establishes a formal listing/delisting event without an exchange notice.
+product_history uses SCD Type 2 intervals [valid_from, valid_to). valid_to=null denotes the current observed version. Last-trading-date changes are lifecycle signals only; confirm final terms or notices before calling them autocalls/knock-outs.
+
+6. Issue review
+Each consecutive observed failure for an ISIN/rule forms an episode. OPEN means still failing in the latest snapshot. RESOLVED means no longer observed failing. NO_LONGER_FAILING means present and passing, not proven corrected at source. ABSENT_FROM_SNAPSHOT means absent, not confirmed redemption. Calendar days-to-resolve is not analyst processing time and is censored by the study window.
+Escalation recommendation: investigate critical/high failures first; then snapshot-level spikes; then unresolved enrichment reviews. No actual client, owner, SLA deadline or escalation acknowledgement is invented.
+
+7. Reporting and quality objectives
+Run python -m srp_dq.report, then execute/export notebooks/01_quality_analysis.ipynb. Review raw-row reconciliation, exception counts, snapshot anomalies, SCD overlap checks and scope limitations before sharing.
+Project targets: type completeness >=99.5%; issuer-code mapping >=99%; critical failures=0; records without critical/high failures >=95%. These are demonstration quality objectives, not Derivia contracts. Time/cost SLAs cannot be established from the source CSVs.
+
+8. Changes and recovery
+Update reference CSVs only after review, with dated supporting evidence; use Git to review changes. Re-run tests and rebuild after rule/reference changes. Historical outputs are recalculated under the current rules: retain dated report copies before changing methodology.
+Database builds use a staging file and transaction; failed builds retain the previous database. Avoid running the build while the database is open elsewhere. Keep source snapshots for reproducibility. Do not infer that checksum integrity proves source completeness.
+
+9. Review cadence
+Review each ingestion batch and recheck mappings when new codes appear. Review thresholds after a longer history is available. Keep version/date and change summary below current when updating this procedure.
+
+Version history
+1.0 | 2026-11-11 | Initial acquisition, quality, audit and reporting workflow; limitations explicitly recorded.

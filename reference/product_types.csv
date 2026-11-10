@@ -1,0 +1,21 @@
+product_type,eusipa_code,eusipa_category,asset_class
+Capital Protection Certificate with Participation,1100,Capital Protection,Investment
+Barrier Capital Protection Certificate,1130,Capital Protection,Investment
+Capital Protection Certificate with Coupon,1140,Capital Protection,Investment
+Capital Protection with Double Knock-Out,1199,Capital Protection,Investment
+Miscellaneous Capital Protection Certificates,1199,Capital Protection,Investment
+Discount Certificate,1200,Yield Enhancement,Investment
+Barrier Discount Certificate,1210,Yield Enhancement,Investment
+Reverse Convertible,1220,Yield Enhancement,Investment
+Barrier Reverse Convertible,1230,Yield Enhancement,Investment
+Express Certificate,1260,Yield Enhancement,Investment
+Tracker Certificate,1300,Participation,Investment
+Outperformance Certificate,1310,Participation,Investment
+Bonus Certificate,1320,Participation,Investment
+Bonus Outperformance Certificate,1330,Participation,Investment
+Reference Entity Certificate with Conditional Capital Protection,1410,Investment with Reference Entities,Investment
+Warrant,2100,Leverage without Knock-Out,Leverage
+Spread Warrant,2110,Leverage without Knock-Out,Leverage
+Warrant with Knock-Out,2200,Leverage with Knock-Out,Leverage
+Mini-Future,2210,Leverage with Knock-Out,Leverage
+Constant Leverage Certificate,2300,Constant Leverage,Leverage
